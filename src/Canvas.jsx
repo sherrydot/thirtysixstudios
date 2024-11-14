@@ -1,16 +1,20 @@
+import PropTypes from 'prop-types'
 import { useEffect, useRef, useState } from "react"
 import canvasimages from "./canvasimages"
 import { useGSAP } from "@gsap/react"
 import gsap from "gsap"
 
-function Canvas() {
-  const [index, setIndex] = useState({value:0})
+
+function Canvas({ details }) {
+  const { startIndex, numImages, duration, size, top, left, zIndex } = details;
+
+  const [index, setIndex] = useState({value: startIndex })
   const canvasRef = useRef(null)
 
   useGSAP(()=>{
     gsap.to(index, {
-      value: 149,
-      duration: 3,
+      value: startIndex + numImages -1,
+      duration: duration,
       repeat: -1,
       ease: "linear",
       onUpdate: () => {
@@ -33,11 +37,28 @@ function Canvas() {
     }
   }, [index])
 
-  return (
-    <canvas id='canvas' ref={canvasRef} className='w-[18rem] h-[18rem]'>
 
+  return (
+    <canvas 
+      id='canvas' 
+      ref={canvasRef} 
+      className='absolute'
+      style={{
+        width: `${size}px`,
+        height: `${size}px`,
+        top: `${top}%`,
+        left: `${left}%`,
+        zIndex: `${zIndex}`
+      }}
+    >
     </canvas>
   )
+}
+
+Canvas.propTypes = {
+  details: PropTypes.shape({
+    startIndex: PropTypes.number.isRequired
+  }).isRequired
 }
 
 export default Canvas
