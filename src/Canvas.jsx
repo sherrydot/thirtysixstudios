@@ -42,10 +42,10 @@ function Canvas({ details }) {
     <canvas 
       id='canvas' 
       ref={canvasRef} 
-      className='absolute'
+      className='relative'
       style={{
-        width: `${size}px`,
-        height: `${size}px`,
+        width: `${size*1.3}px`,
+        height: `${size*1.3}px`,
         top: `${top}%`,
         left: `${left}%`,
         zIndex: `${zIndex}`
