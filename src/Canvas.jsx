@@ -39,7 +39,11 @@ function Canvas({ details }) {
 
 
   return (
-    <canvas 
+    <canvas
+      data-scroll
+      data-scroll-speed={
+        Math.random().toFixed(1)
+      }
       id='canvas' 
       ref={canvasRef} 
       className='relative'
