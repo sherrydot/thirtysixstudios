@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import canvasImages from "./canvasimages";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import PropTypes from 'prop-types';
 
 function Canvas({ details }) {
   const { startIndex, numImages, duration, size, top, left, zIndex } = details;
@@ -61,5 +62,17 @@ function Canvas({ details }) {
     ></canvas>
   );
 }
+
+Canvas.propTypes = {
+  details: PropTypes.shape({
+    startIndex: PropTypes.number.isRequired,
+    numImages: PropTypes.number.isRequired,
+    duration: PropTypes.number.isRequired,
+    size: PropTypes.number.isRequired,
+    top: PropTypes.number.isRequired,
+    left: PropTypes.number.isRequired,
+    zIndex: PropTypes.number.isRequired,
+  }).isRequired,
+};
 
 export default Canvas;
